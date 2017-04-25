@@ -2,4 +2,4 @@
 
 # License
 
-[MIT License.](../blob/master/LICENSE "MIT License")
+[MIT License.](../master/LICENSE "MIT License")
