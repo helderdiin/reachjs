@@ -1,3 +1,5 @@
+## [![Build Status](https://travis-ci.org/helderdiin/reachjs.svg?branch=master)](https://travis-ci.org/helderdiin/reachjs)
+
 # ReachJS
 
 ## License
