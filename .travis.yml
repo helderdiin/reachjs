@@ -1,5 +1,7 @@
 language: node_js
 node_js:
+after_success:
+  - npm run coveralls
 branches:
   only:
     - master
