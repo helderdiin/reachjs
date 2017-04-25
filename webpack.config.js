@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    reachjs: './reachjs.js',
+    reachjs: './index.js',
     app: './app.js',
   },
   output: {

@@ -2,7 +2,7 @@
   "name": "reachjs",
   "version": "0.0.2",
   "description": "",
-  "main": "dist/reachjs.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --config webpack.config.js"
