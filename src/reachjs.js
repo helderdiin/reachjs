@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import './styles/reachjs.scss';
 
-var main = _.template(' \
+const main = _.template(' \
 <div id="reachjs" class="invisible reachjs-mask"> \
   <div class="reachjs-wrapper"> \
     <div class="reachjs-container"> \
@@ -14,7 +14,7 @@ var main = _.template(' \
   </div> \
 </div>');
 
-var body = _.template(' \
+const body = _.template(' \
 <div class="reach-finder"> \
   <input class="reach-finder__input"/> \
 </div> \
@@ -24,49 +24,47 @@ var body = _.template(' \
   </ul> \
 </div>');
 
-var itemFound = _.template('\
-  <li class="<%= data.customClass || \"list__item\" %>"><%= data.text %></li> \
-');
+const itemFound = _.template('<li class="<%= data.customClass || \"list__item\" %>"><%= data.text %></li>');
 
-var templates = {
-  main: main,
-  body: body,
-  itemFound: itemFound
+const templates = {
+  main,
+  body,
+  itemFound
 };
 
-var routes = [];
+let routes = [];
 
-function addReachToDOM() {
+const addReachToDOM = () => {
   return $('body').append(templates.main({
     header: '',
     body: templates.body({}),
     footer: ''
   }));
-}
+};
 
-function showReach() {
+const showReach = () => {
   $('#reachjs').removeClass('invisible');
   $('.reach-finder__input').focus();
-}
+};
 
-function hideReach() {
+const hideReach = () => {
   $('#reachjs').addClass('invisible');
-}
+};
 
-function getKeyPressed(e) {
+const getKeyPressed = (e = {}) => {
   return e.keyCode ? e.keyCode : e.which;
-}
+};
 
-function bindOpenEventToWindow() {
-  var keyUpSpaceBar = function keyUpSpaceBar(e) {
-    var keyPressed = getKeyPressed(e);
+const bindOpenEventToWindow = () => {
+  const keyUpSpaceBar = (e = {}) => {
+    const keyPressed = getKeyPressed(e);
 
     if (keyPressed === 32 || keyPressed === 0) {
       showReach();
     }
   };
 
-  var keyUpCtrl = function keyUpCtrl(e) {
+  const keyUpCtrl = (e = {}) => {
     if (e.ctrlKey) {
       $(window).off('keyup', keyUpSpaceBar);
     }
@@ -74,7 +72,7 @@ function bindOpenEventToWindow() {
     bindOpenEventToWindow();
   };
 
-  var keyDownCtrl = function keyDownCtrl(e) {
+  const keyDownCtrl = (e = {}) => {
     if (e.ctrlKey) {
       $(window).one('keyup', keyUpSpaceBar);
       $(window).one('keyup', keyUpCtrl);
@@ -84,51 +82,68 @@ function bindOpenEventToWindow() {
   };
 
   $(window).one('keydown', keyDownCtrl);
-}
+};
 
-function bindCloseEventToWindow() {
-  $(window).on('keyup', function(e) {
-    var keyPressed = getKeyPressed(e);
+const bindCloseEventToWindow = () => {
+  const keyUpEsc = (e = {}) => {
+    const keyPressed = getKeyPressed(e);
 
     if (keyPressed === 27) {
       hideReach();
       bindOpenEventToWindow();
     }
-  });
-}
+  };
 
-function bindReachFinderEvents() {
-  $('.reach-finder__input').on('input', function(e) {
-    var valor = e.target.value.trim();
+  $(window).on('keyup', keyUpEsc);
+};
 
-    if (valor.length > 0) {
-      var itemsFound = routes.filter(function(r) {
-        return r.title.toLowerCase().indexOf(valor.toLowerCase()) > -1 || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
+const bindReachFinderEvents = () => {
+  const inputReachFinder = (e = {}) => {
+    const valor = e.target.value.trim();
+
+    const filterRoutes = (r) => {
+      return r.title.toLowerCase().indexOf(valor.toLowerCase()) > -1 || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
+    };
+
+    const reduceItemsFound = (p, c, i) => {
+      p += templates.itemFound({ 
+        data: { 
+          text: 'Item ' + (i+1) + ' encontrado: ' + c.title + '.'
+        }
       });
 
-      $('.items-found__list').html(itemsFound.reduce(function(p, c, i) {
-        p += templates.itemFound({ data: { text: 'Item ' + (i+1) + ' encontrado: ' + c.title + '.' } });
-        return p;
-      }, ''));
-    } else {
-      $('.items-found__list').html(templates.itemFound({ data: { text: 'Nenhum item encontrado.' } }));
-    }
-  });
-}
+      return p;
+    };
 
-function bindReachEvents() {
+    if (valor.length > 0) {
+      const itemsFound = routes.filter(filterRoutes);
+
+      $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, ''));
+    } else {
+      $('.items-found__list').html(templates.itemFound({ 
+        data: { 
+          text: 'Nenhum item encontrado.'
+        }
+      }));
+    }
+  };
+
+  $('.reach-finder__input').on('input', inputReachFinder);
+};
+
+const bindReachEvents = () => {
   bindOpenEventToWindow();
   bindCloseEventToWindow();
   bindReachFinderEvents();
-}
+};
 
-function init(config) {
+const init = (config = {}) => {
   addReachToDOM();
   bindReachEvents();
 
   routes = config.routes;
-}
+};
 
-module.exports = {
+export default {
   init: init
 };
