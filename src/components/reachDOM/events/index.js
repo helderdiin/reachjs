@@ -14,6 +14,9 @@ import {
   hideReach,
 } from '../visibility';
 
+const resetReach = () => {
+  $('.reach-finder__input').val('').trigger('input');
+};
 
 export const bindOpenEventToWindow = () => {
   const keyUpSpaceBar = (e = {}) => {
@@ -45,13 +48,18 @@ export const bindOpenEventToWindow = () => {
   $(window).one('keydown', keyDownCtrl);
 };
 
+const closeReach = () => {
+  hideReach();
+  bindOpenEventToWindow();
+  resetReach();
+};
+
 export const bindCloseEventToWindow = () => {
   const keyUpEsc = (e = {}) => {
     const keyPressed = getKeyPressed(e);
 
     if (keyPressed === 27) {
-      hideReach();
-      bindOpenEventToWindow();
+      closeReach();
     }
   };
 
@@ -92,11 +100,19 @@ export const bindReachFinderEvents = () => {
   $('.reach-finder__input').on('input', inputReachFinder);
 };
 
+export const bindClickEventToItem = () => {
+  const clickItemList = () => {
+    closeReach();
+  };
+
+  $('#reachjs').on('click', '.items-found__list .list__item', clickItemList);
+};
+
 export const bindReachEvents = () => {
   bindOpenEventToWindow();
   bindCloseEventToWindow();
   bindReachFinderEvents();
-  // bindClickItemEvents();
+  bindClickEventToItem();
 };
 
 export default {
@@ -104,4 +120,5 @@ export default {
   bindCloseEventToWindow,
   bindReachFinderEvents,
   bindReachEvents,
+  bindClickEventToItem,
 };
