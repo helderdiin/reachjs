@@ -66,6 +66,14 @@ export const bindCloseEventToWindow = () => {
   $(window).on('keyup', keyUpEsc);
 };
 
+const itemNotFound = () => {
+  return itemFound({
+    data: {
+      text: 'Nenhum item encontrado.',
+    },
+  });
+};
+
 export const bindReachFinderEvents = () => {
   const inputReachFinder = (e = {}) => {
     const valor = e.target.value.trim();
@@ -87,11 +95,11 @@ export const bindReachFinderEvents = () => {
     if (valor.length > 0) {
       const itemsFound = getRoutes().filter(filterRoutes);
 
-      $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, ''));
+      $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
     } else {
       $('.items-found__list').html(itemFound({
         data: {
-          text: 'Nenhum item encontrado.',
+          text: 'Digite algo para ser pesquisado...',
         },
       }));
     }
