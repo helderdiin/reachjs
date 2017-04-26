@@ -44,6 +44,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 10px;
   &.list__item:hover {
     background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 }
 
