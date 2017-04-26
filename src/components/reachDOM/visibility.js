@@ -1,11 +1,13 @@
-import $ from 'jquery';
+import {
+  getElements,
+} from './elements';
 
 export const showReach = () => {
-  $('#reachjs').removeClass('invisible');
+  getElements('reachjs').removeClass('invisible');
 };
 
 export const hideReach = () => {
-  $('#reachjs').addClass('invisible');
+  getElements('reachjs').addClass('invisible');
 };
 
 export default {

@@ -14,8 +14,13 @@ import {
   hideReach,
 } from '../visibility';
 
+import {
+  getSelectors,
+  getElements,
+} from '../elements';
+
 const resetReach = () => {
-  $('.reach-finder__input').val('').trigger('input');
+  getElements('finderInput').val('').trigger('input');
 };
 
 export const bindOpenEventToWindow = () => {
@@ -24,7 +29,7 @@ export const bindOpenEventToWindow = () => {
 
     if (keyPressed === 32 || keyPressed === 0) {
       showReach();
-      $('.reach-finder__input').focus();
+      getElements('finderInput').focus();
     }
   };
 
@@ -79,7 +84,7 @@ export const bindReachFinderEvents = () => {
     const valor = e.target.value.trim();
 
     const filterRoutes = (r) => {
-      return (`${r.title} ${r.description}`).toLowerCase().indexOf(valor.toLowerCase()) > -1;
+      return `${r.title} ${r.description}`.toLowerCase().indexOf(valor.toLowerCase()) > -1;
     };
 
     const reduceItemsFound = (p, c) => {
@@ -94,9 +99,9 @@ export const bindReachFinderEvents = () => {
     if (valor.length > 0) {
       const itemsFound = getRoutes().filter(filterRoutes);
 
-      $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
+      getElements('foundList').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
     } else {
-      $('.items-found__list').html(itemFound({
+      getElements('foundList').html(itemFound({
         data: {
           text: 'Digite algo para ser pesquisado...',
         },
@@ -104,15 +109,15 @@ export const bindReachFinderEvents = () => {
     }
   };
 
-  $('.reach-finder__input').on('input', inputReachFinder);
+  getElements('finderInput').on('input', inputReachFinder);
 };
 
 export const bindClickEventToItem = () => {
-  $('#reachjs').on('click', '.items-found__list .list__item', closeReach);
+  getElements('reachjs').on('click', getSelectors('listItem'), closeReach);
 };
 
 export const bindClickEventToCloseButton = () => {
-  $('.reachjs-fechar').on('click', closeReach);
+  getElements('reachjsClose').on('click', closeReach);
 };
 
 export const bindReachEvents = () => {

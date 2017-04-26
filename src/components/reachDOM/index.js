@@ -1,6 +1,11 @@
 import $ from 'jquery';
 
 import {
+  selectElements,
+  getElements,
+} from './elements';
+
+import {
   main,
   body,
 } from '../templates';
@@ -16,9 +21,10 @@ export const addReachToDOM = () => {
     footer: '',
   }));
 
+  selectElements();
   bindReachEvents();
 
-  return $('body').find('#reachjs');
+  return getElements('reachjs');
 };
 
 export default {
