@@ -1,20 +1,26 @@
-import reachDOM from './components/reachDOM';
+import {
+  bindOpenEventToWindow,
+  bindCloseEventToWindow,
+  bindReachFinderEvents,
+  addReachToDOM,
+  setRoutes,
+} from './components/reachDOM';
 
 import './styles/reachjs.scss';
 
 const bindReachEvents = () => {
-  reachDOM.bindOpenEventToWindow();
-  reachDOM.bindCloseEventToWindow();
-  reachDOM.bindReachFinderEvents();
+  bindOpenEventToWindow();
+  bindCloseEventToWindow();
+  bindReachFinderEvents();
 };
 
 const init = (config = {}) => {
-  reachDOM.addReachToDOM();
+  addReachToDOM();
   bindReachEvents();
 
-  reachDOM.setRoutes(config.routes);
+  setRoutes(config.routes);
 };
 
 export default {
-  init: init
+  init,
 };

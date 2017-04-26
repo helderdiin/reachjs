@@ -1,14 +1,18 @@
-import { getKeyPressed } from '../utils';
-import templates from '../templates';
 import $ from 'jquery';
+import { getKeyPressed } from '../utils';
+import {
+  main,
+  body,
+  itemFound,
+} from '../templates';
 
 let routes = [];
 
 export const addReachToDOM = () => {
-  return $('body').append(templates.main({
+  return $('body').append(main({
     header: '',
-    body: templates.body({}),
-    footer: ''
+    body: body({}),
+    footer: '',
   }));
 };
 
@@ -68,17 +72,16 @@ export const bindReachFinderEvents = () => {
     const valor = e.target.value.trim();
 
     const filterRoutes = (r) => {
-      return r.title.toLowerCase().indexOf(valor.toLowerCase()) > -1 || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
+      return r.title.toLowerCase().indexOf(valor.toLowerCase()) > -1
+        || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
     };
 
     const reduceItemsFound = (p, c, i) => {
-      p += templates.itemFound({ 
-        data: { 
-          text: 'Item ' + (i+1) + ' encontrado: ' + c.title + '.'
-        }
+      return p + itemFound({
+        data: {
+          text: `Item ${(i + 1)} encontrado: ${c.title}.`,
+        },
       });
-
-      return p;
     };
 
     if (valor.length > 0) {
@@ -86,10 +89,10 @@ export const bindReachFinderEvents = () => {
 
       $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, ''));
     } else {
-      $('.items-found__list').html(templates.itemFound({ 
-        data: { 
-          text: 'Nenhum item encontrado.'
-        }
+      $('.items-found__list').html(itemFound({
+        data: {
+          text: 'Nenhum item encontrado.',
+        },
       }));
     }
   };
@@ -108,5 +111,5 @@ export default {
   bindOpenEventToWindow,
   bindCloseEventToWindow,
   bindReachFinderEvents,
-  setRoutes
+  setRoutes,
 };
