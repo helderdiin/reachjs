@@ -1,12 +1,15 @@
 import $ from 'jquery';
 import { getKeyPressed } from '../utils';
+
 import {
   main,
   body,
   itemFound,
 } from '../templates';
 
-let routes = [];
+import {
+  getRoutes,
+} from '../reachService';
 
 export const showReach = () => {
   $('#reachjs').removeClass('invisible');
@@ -78,7 +81,7 @@ export const bindReachFinderEvents = () => {
     };
 
     if (valor.length > 0) {
-      const itemsFound = routes.filter(filterRoutes);
+      const itemsFound = getRoutes().filter(filterRoutes);
 
       $('.items-found__list').html(itemsFound.reduce(reduceItemsFound, ''));
     } else {
@@ -91,10 +94,6 @@ export const bindReachFinderEvents = () => {
   };
 
   $('.reach-finder__input').on('input', inputReachFinder);
-};
-
-export const setRoutes = (pageRoutes = []) => {
-  routes = pageRoutes;
 };
 
 export const bindReachEvents = () => {
@@ -121,7 +120,6 @@ export default {
   bindOpenEventToWindow,
   bindCloseEventToWindow,
   bindReachFinderEvents,
-  setRoutes,
   bindReachEvents,
   addReachToDOM,
 };

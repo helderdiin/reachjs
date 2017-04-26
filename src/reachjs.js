@@ -1,7 +1,10 @@
 import {
   addReachToDOM,
-  setRoutes,
 } from './components/reachDOM';
+
+import {
+  setRoutes,
+} from './components/reachService';
 
 import './styles/reachjs.scss';
 
