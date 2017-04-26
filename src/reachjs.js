@@ -6,6 +6,10 @@ import {
   setRoutes,
 } from './components/reachService';
 
+import {
+  setLocale,
+} from './components/i18n';
+
 import './styles/reachjs.scss';
 
 const init = (config = {}) => {
@@ -14,6 +18,9 @@ const init = (config = {}) => {
   setRoutes(config.routes);
 };
 
+setLocale('br');
+
 export default {
   init,
+  setLocale,
 };
