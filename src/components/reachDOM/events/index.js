@@ -108,11 +108,11 @@ export const bindReachFinderEvents = () => {
 };
 
 export const bindClickEventToItem = () => {
-  const clickItemList = () => {
-    closeReach();
-  };
+  $('#reachjs').on('click', '.items-found__list .list__item', closeReach);
+};
 
-  $('#reachjs').on('click', '.items-found__list .list__item', clickItemList);
+export const bindClickEventToCloseButton = () => {
+  $('.reachjs-fechar').on('click', closeReach);
 };
 
 export const bindReachEvents = () => {
@@ -120,6 +120,7 @@ export const bindReachEvents = () => {
   bindCloseEventToWindow();
   bindReachFinderEvents();
   bindClickEventToItem();
+  bindClickEventToCloseButton();
 };
 
 export default {

@@ -74,6 +74,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
+  position: relative;
 }
 
 .reachjs-header h3 {
@@ -88,4 +89,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .reachjs-default-button {
   float: right;
+}
+
+.reachjs-fechar {
+  position: absolute;
+  width: 30px;
+  right: -15px;
+  top: -20px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  font-size: 15px;
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -4,6 +4,7 @@ const mainString = '' +
 '<div id="reachjs" class="invisible reachjs-mask">' +
   '<div class="reachjs-wrapper">' +
     '<div class="reachjs-container">' +
+      '<span title="Fechar" class="reachjs-fechar">x</span>' +
       '<div class="reachjs-header"><%= header %></div>' +
       '<div class="reachjs-body"><%= body %></div>' +
       '<div class="reachjs-footer"><%= footer %></div>' +
