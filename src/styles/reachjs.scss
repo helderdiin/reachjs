@@ -1,16 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+@import './style-scroll.scss';
+
+html, body, input, textarea, select, button {
+  font-family: 'Muli', sans-serif !important;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
 #reachjs.invisible {
   display: none !important;
 }
 
 #reachjs .reach-finder,
-#reachjs .reach-finder .reach-finder__input {
+.reach-finder .reach-finder__input {
   width: 100%;
   box-sizing: border-box;
+}
+
+.reach-finder .reach-finder__input {
+  padding: 8px 10px;
 }
 
 #reachjs .items-found {
   width: 100%;
   margin-top: 15px;
+  height: auto;
+  max-height: 500px;
+  overflow-x: hidden;
+  height: 445px;
 }
 
 #reachjs .items-found__list {
@@ -20,7 +41,11 @@
 }
 
 #reachjs .items-found__list li {
-  padding: 8px 0;
+  padding: 8px 10px;
+  &.list__item:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
 }
 
 .reachjs-mask {
@@ -42,13 +67,14 @@
 
 .reachjs-container {
   width: 300px;
-  margin: 0px auto;
+  height: 480px;
+  margin: 50px auto;
   padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
 .reachjs-header h3 {
@@ -57,9 +83,26 @@
 }
 
 .reachjs-body {
-  margin: 20px 0;
+  height: 480px;
+  overflow: hidden;
 }
 
 .reachjs-default-button {
   float: right;
+}
+
+.reachjs-fechar {
+  position: absolute;
+  width: 30px;
+  right: -15px;
+  top: -20px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  font-size: 15px;
+  &:hover {
+    cursor: pointer;
+  }
 }

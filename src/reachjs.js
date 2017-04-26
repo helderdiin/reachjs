@@ -1,20 +1,26 @@
-import reachDOM from './components/reachDOM';
+import {
+  addReachToDOM,
+} from './components/reachDOM';
+
+import {
+  setRoutes,
+} from './components/reachService';
+
+import {
+  setLocale,
+} from './components/i18n';
 
 import './styles/reachjs.scss';
 
-const bindReachEvents = () => {
-  reachDOM.bindOpenEventToWindow();
-  reachDOM.bindCloseEventToWindow();
-  reachDOM.bindReachFinderEvents();
-};
-
 const init = (config = {}) => {
-  reachDOM.addReachToDOM();
-  bindReachEvents();
+  addReachToDOM();
 
-  reachDOM.setRoutes(config.routes);
+  setRoutes(config.routes);
 };
+
+setLocale('br');
 
 export default {
-  init: init
+  init,
+  setLocale,
 };

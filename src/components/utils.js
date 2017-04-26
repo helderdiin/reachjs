@@ -3,5 +3,5 @@ export const getKeyPressed = (e = {}) => {
 };
 
 export default {
-  getKeyPressed
+  getKeyPressed,
 };

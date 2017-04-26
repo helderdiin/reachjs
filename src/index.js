@@ -1,32 +1,30 @@
+/* eslint-disable no-undef, func-names */
 import reachjs from './reachjs';
 
-(function( global, factory ) {
-  "use strict";
-
-  if ( typeof module === "object" && typeof module.exports === "object" ) {
+(function (global, factory) {
+  if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = global.document ?
-      factory( global, false ) :
-      function( w ) {
-        if ( !w.document ) {
-          throw new Error( "reachjs requires a window with a document" );
+      factory(global, false) :
+      (w) => {
+        if (!w.document) {
+          throw new Error('reachjs requires a window with a document');
         }
-        return factory( w );
+        return factory(w);
       };
   } else {
-    factory( global );
+    factory(global);
   }
-} )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-  "use strict";
-
-  if ( typeof define === "function" && define.amd ) {
-    define( "reachjs", [], function() {
+}(typeof window !== 'undefined' ? window : this, (window, noGlobal) => {
+  if (typeof define === 'function' && define.amd) {
+    define('reachjs', [], () => {
       return reachjs;
-    } );
+    });
   }
 
-  if ( !noGlobal ) {
+  /* eslint-disable no-param-reassign */
+  if (!noGlobal) {
     window.reachjs = reachjs;
   }
 
   return reachjs;
-});
+}));
