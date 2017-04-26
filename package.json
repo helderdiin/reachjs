@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack -p",
     "test": "mocha test --compilers js:babel-register",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --bail --recursive --compilers js:babel-register",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
