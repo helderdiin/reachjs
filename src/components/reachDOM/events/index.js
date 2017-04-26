@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { getKeyPressed } from '../../utils';
 
 import {
-  itemFound,
+  getTemplates,
 } from '../../templates';
 
 import {
@@ -72,7 +72,7 @@ export const bindCloseEventToWindow = () => {
 };
 
 const itemNotFound = () => {
-  return itemFound({
+  return getTemplates('itemFound')({
     data: {
       text: 'Nenhum item encontrado.',
     },
@@ -88,7 +88,7 @@ export const bindReachFinderEvents = () => {
     };
 
     const reduceItemsFound = (p, c) => {
-      return p + itemFound({
+      return p + getTemplates('itemFound')({
         data: {
           text: `${c.title}`,
           customClass: 'list__item',
@@ -101,7 +101,7 @@ export const bindReachFinderEvents = () => {
 
       getElements('foundList').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
     } else {
-      getElements('foundList').html(itemFound({
+      getElements('foundList').html(getTemplates('itemFound')({
         data: {
           text: 'Digite algo para ser pesquisado...',
         },

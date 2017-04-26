@@ -6,8 +6,8 @@ import {
 } from './elements';
 
 import {
-  main,
-  body,
+  generateTemplates,
+  getTemplates,
 } from '../templates';
 
 import {
@@ -15,9 +15,11 @@ import {
 } from './events';
 
 export const addReachToDOM = () => {
-  $('body').append(main({
+  generateTemplates();
+
+  $('body').append(getTemplates('main')({
     header: '',
-    body: body({}),
+    body: getTemplates('body')({}),
     footer: '',
   }));
 
