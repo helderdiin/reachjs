@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { cloneDeep } from 'lodash';
 
 const data = {};
 
@@ -7,7 +7,7 @@ export const setRoutes = (routes = []) => {
 };
 
 export const getRoutes = () => {
-  return _.cloneDeep(data.routes);
+  return cloneDeep(data.routes);
 };
 
 export default {

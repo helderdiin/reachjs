@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { template } from 'lodash';
 
 const mainString = '' +
 '<div id="reachjs" class="invisible reachjs-mask">' +
@@ -12,7 +12,7 @@ const mainString = '' +
   '</div>' +
 '</div>';
 
-export const main = _.template(mainString);
+export const main = template(mainString);
 
 const bodyString = '' +
 '<div class="reach-finder">' +
@@ -24,9 +24,9 @@ const bodyString = '' +
   '</ul>' +
 '</div>';
 
-export const body = _.template(bodyString);
+export const body = template(bodyString);
 
-export const itemFound = _.template('<li class="<%= data.customClass || "" %>"><%= data.text %></li>');
+export const itemFound = template('<li class="<%= data.customClass || "" %>"><%= data.text %></li>');
 
 export default {
   main,
