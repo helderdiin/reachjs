@@ -79,8 +79,7 @@ export const bindReachFinderEvents = () => {
     const valor = e.target.value.trim();
 
     const filterRoutes = (r) => {
-      return r.title.toLowerCase().indexOf(valor.toLowerCase()) > -1
-        || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
+      return (`${r.title} ${r.description}`).toLowerCase().indexOf(valor.toLowerCase()) > -1;
     };
 
     const reduceItemsFound = (p, c) => {
