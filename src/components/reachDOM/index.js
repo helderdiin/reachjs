@@ -76,10 +76,11 @@ export const bindReachFinderEvents = () => {
         || r.description.toLowerCase().indexOf(valor.toLowerCase()) > -1;
     };
 
-    const reduceItemsFound = (p, c, i) => {
+    const reduceItemsFound = (p, c) => {
       return p + itemFound({
         data: {
-          text: `Item ${(i + 1)} encontrado: ${c.title}.`,
+          text: `${c.title}`,
+          customClass: 'list__item',
         },
       });
     };

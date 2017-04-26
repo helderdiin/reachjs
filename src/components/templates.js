@@ -17,7 +17,7 @@ const bodyString = '' +
 '<div class="reach-finder">' +
   '<input class="reach-finder__input"/>' +
 '</div>' +
-'<div class="items-found">' +
+'<div class="items-found style-scroll">' +
   '<ul class="items-found__list">' +
     '<li> Digite algo para ser pesquisado... </li>' +
   '</ul>' +
@@ -25,7 +25,7 @@ const bodyString = '' +
 
 export const body = _.template(bodyString);
 
-export const itemFound = _.template('<li class="<%= data.customClass || "list__item" %>"><%= data.text %></li>');
+export const itemFound = _.template('<li class="<%= data.customClass || "" %>"><%= data.text %></li>');
 
 export default {
   main,
