@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { getKeyPressed } from '../../utils';
+import { getText } from '../../i18n';
 
 import {
   getTemplates,
@@ -74,7 +75,7 @@ export const bindCloseEventToWindow = () => {
 const itemNotFound = () => {
   return getTemplates('itemFound')({
     data: {
-      text: 'Nenhum item encontrado.',
+      text: getText('no-items-found'),
     },
   });
 };
@@ -103,7 +104,7 @@ export const bindReachFinderEvents = () => {
     } else {
       getElements('foundList').html(getTemplates('itemFound')({
         data: {
-          text: 'Digite algo para ser pesquisado...',
+          text: getText('enter-any-text'),
         },
       }));
     }

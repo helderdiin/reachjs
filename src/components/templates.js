@@ -22,7 +22,7 @@ export const generateTemplates = () => {
   '</div>' +
   '<div class="items-found style-scroll">' +
     '<ul class="items-found__list">' +
-      '<li> Digite algo para ser pesquisado... </li>' +
+      `<li>${getText('enter-any-text')}</li>` +
     '</ul>' +
   '</div>');
 
