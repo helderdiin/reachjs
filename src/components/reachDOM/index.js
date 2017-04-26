@@ -8,14 +8,6 @@ import {
 
 let routes = [];
 
-export const addReachToDOM = () => {
-  return $('body').append(main({
-    header: '',
-    body: body({}),
-    footer: '',
-  }));
-};
-
 export const showReach = () => {
   $('#reachjs').removeClass('invisible');
   $('.reach-finder__input').focus();
@@ -105,12 +97,31 @@ export const setRoutes = (pageRoutes = []) => {
   routes = pageRoutes;
 };
 
+export const bindReachEvents = () => {
+  bindOpenEventToWindow();
+  bindCloseEventToWindow();
+  bindReachFinderEvents();
+};
+
+export const addReachToDOM = () => {
+  $('body').append(main({
+    header: '',
+    body: body({}),
+    footer: '',
+  }));
+
+  bindReachEvents();
+
+  return $('body').find('#reachjs');
+};
+
 export default {
-  addReachToDOM,
   showReach,
   hideReach,
   bindOpenEventToWindow,
   bindCloseEventToWindow,
   bindReachFinderEvents,
   setRoutes,
+  bindReachEvents,
+  addReachToDOM,
 };
