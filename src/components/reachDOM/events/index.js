@@ -8,6 +8,7 @@ import {
 
 import {
   getRoutes,
+  itemSelected,
 } from '../../reachService';
 
 import {
@@ -91,8 +92,9 @@ export const bindReachFinderEvents = () => {
     const reduceItemsFound = (p, c) => {
       return p + getTemplates('itemFound')({
         data: {
-          text: `${c.title}`,
+          text: c.title,
           customClass: 'list__item',
+          path: c.path,
         },
       });
     };
@@ -114,7 +116,12 @@ export const bindReachFinderEvents = () => {
 };
 
 export const bindClickEventToItem = () => {
-  getElements('reachjs').on('click', getSelectors('listItem'), closeReach);
+  const clickListItem = (e = {}) => {
+    itemSelected(e.target.dataset.path);
+    closeReach();
+  };
+
+  getElements('reachjs').on('click', getSelectors('listItem'), clickListItem);
 };
 
 export const bindClickEventToCloseButton = () => {

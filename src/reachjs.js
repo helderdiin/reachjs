@@ -4,6 +4,7 @@ import {
 
 import {
   setRoutes,
+  setOnSelect,
 } from './components/reachService';
 
 import {
@@ -16,6 +17,7 @@ const init = (config = {}) => {
   addReachToDOM();
 
   setRoutes(config.routes);
+  setOnSelect(config.onSelect);
 };
 
 setLocale('br');
