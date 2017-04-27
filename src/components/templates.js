@@ -26,7 +26,7 @@ export const generateTemplates = () => {
     '</ul>' +
   '</div>');
 
-  const itemFound = template('<li class="<%= data.customClass || "" %>"><%= data.text %></li>');
+  const itemFound = template('<li data-path="<%= data.path || "" %>" class="<%= data.customClass || "" %>"><%= data.text %></li>');
 
   templates = {
     main,
