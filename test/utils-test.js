@@ -18,7 +18,7 @@ describe('Utils file', () => {
     });
 
     it('Should return undefined', () => {
-      expect(getKeyPressed()).to.be.undeifned;
+      expect(getKeyPressed()).to.be.undefined;
     });
 
     it('Should return keyCode (7) even with wich (13)', () => {
