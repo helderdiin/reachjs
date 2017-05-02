@@ -63,8 +63,12 @@ export const getSecondOpenKey = () => {
   return getOpenKeys()[1];
 };
 
-export const setRoutesUrl = (routesUrl = '') => {
+export const setRoutesUrl = (routesUrl) => {
   data.routesUrl = routesUrl;
+};
+
+export const getRoutesUrl = () => {
+  return data.routesUrl;
 };
 
 export default {
@@ -80,4 +84,5 @@ export default {
   getFirstOpenKey,
   getSecondOpenKey,
   setRoutesUrl,
+  getRoutesUrl,
 };
