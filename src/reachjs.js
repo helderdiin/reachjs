@@ -5,6 +5,7 @@ import {
 import {
   setRoutes,
   setOnSelect,
+  setOpenKeys,
 } from './components/reachService';
 
 import {
@@ -18,6 +19,10 @@ const init = (config = {}) => {
     setLocale(config.locale);
   }
 
+  if (config.openKeys) {
+    setOpenKeys(config.openKeys);
+  }
+
   addReachToDOM();
 
   setRoutes(config.routes);
@@ -25,8 +30,10 @@ const init = (config = {}) => {
 };
 
 setLocale('br');
+setOpenKeys();
 
 export default {
   init,
   setLocale,
+  setOpenKeys,
 };

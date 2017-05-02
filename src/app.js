@@ -2,6 +2,7 @@ import reachjs from './reachjs';
 
 reachjs.init({
   locale: 'us',
+  openKeys: [17, 32],
   routes: [{
     title: 'Home',
     path: 'home',

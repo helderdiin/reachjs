@@ -45,6 +45,24 @@ export const itemSelected = (route = '') => {
   }
 };
 
+export const setOpenKeys = (openKeys = [17, 32]) => {
+  if (openKeys.length === 2) {
+    data.openKeys = openKeys;
+  }
+};
+
+export const getOpenKeys = () => {
+  return cloneDeep(data.openKeys);
+};
+
+export const getFirstOpenKey = () => {
+  return getOpenKeys()[0];
+};
+
+export const getSecondOpenKey = () => {
+  return getOpenKeys()[1];
+};
+
 export default {
   setRoutes,
   getRoutes,
@@ -53,4 +71,8 @@ export default {
   itemSelected,
   getOnSelect,
   setOnSelect,
+  getOpenKeys,
+  setOpenKeys,
+  getFirstOpenKey,
+  getSecondOpenKey,
 };
