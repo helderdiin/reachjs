@@ -110,9 +110,11 @@ export const bindReachFinderEvents = () => {
     };
 
     if (valor.length > 0) {
-      const itemsFound = getRoutes().filter(filterRoutes);
+      getRoutes().then((routes = []) => {
+        const itemsFound = routes.filter(filterRoutes);
 
-      getElements('foundList').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
+        getElements('foundList').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
+      });
     } else {
       getElements('foundList').html(getTemplates('itemFound')({
         data: {

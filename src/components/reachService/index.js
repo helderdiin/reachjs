@@ -16,13 +16,13 @@ export const setRoutes = (routes = []) => {
 };
 
 export const getRoutes = () => {
-  return cloneDeep(data.routes);
+  return Promise.resolve(cloneDeep(data.routes));
 };
 
 export const getRoute = (route = '') => {
-  return data.routes.find((r) => {
+  return Promise.resolve(data.routes.find((r) => {
     return r.path === route;
-  });
+  }));
 };
 
 export const setOnSelect = (onSelect) => {
@@ -35,13 +35,13 @@ export const getOnSelect = () => {
 
 export const itemSelected = (route = '') => {
   if (route) {
-    const routeData = getRoute(route);
-
-    if (data.onSelect && typeof data.onSelect === 'function') {
-      data.onSelect(routeData);
-    } else {
-      window.location = routeData.path;
-    }
+    getRoute(route).then((routeData = {}) => {
+      if (data.onSelect && typeof data.onSelect === 'function') {
+        data.onSelect(routeData);
+      } else {
+        window.location = routeData.path;
+      }
+    });
   }
 };
 
