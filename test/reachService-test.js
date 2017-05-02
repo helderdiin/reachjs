@@ -3,6 +3,11 @@ import {
 } from 'chai';
 
 import {
+  stub,
+} from 'sinon';
+
+
+import {
   setRoutes,
   getRoutes,
   normalizePaths,
@@ -10,7 +15,15 @@ import {
   setOnSelect,
   getOnSelect,
   itemSelected,
+  setRoutesUrl,
+  getRoutesUrl,
+  setOpenKeys,
+  getOpenKeys,
+  getFirstOpenKey,
+  getSecondOpenKey,
 } from '../src/components/reachService';
+
+import http from '../src/components/http';
 
 describe('reachService file', () => {
   let routes;
@@ -33,6 +46,7 @@ describe('reachService file', () => {
       description: 'mauris purus, tempus sagittis massa faucibus sit amet',
     }];
   });
+
   describe('setRoutes', () => {
     it('Should set none routes', (done) => {
       setRoutes();
@@ -50,6 +64,70 @@ describe('reachService file', () => {
         expect(r).to.have.length.above(0);
         done();
       });
+    });
+  });
+
+  describe('getRoutes', () => {
+    let stubHttpGetRoutes;
+
+    beforeEach(() => {
+      stubHttpGetRoutes = stub(http, 'getRoutes').callsFake(() => {
+        return Promise.resolve([
+          {
+            "title": "Home",
+            "path": "home",
+            "description": "Descrição da Home"
+          }, {
+            "title": "Quem Somos",
+            "path": "/quem_somos",
+            "description": "Descrição da Quem Somos"
+          }, {
+            "title": "Contato",
+            "path": "contato",
+            "description": "Descrição da Contato"
+          }
+        ]);
+      });
+    });
+
+    afterEach(() => {
+      stubHttpGetRoutes.restore();
+    });
+
+    it('Should get routes from url', (done) => {
+      setRoutesUrl('teste');
+
+      getRoutes().then((r) => {
+        expect(r.length).to.equal(3);
+        done();
+      });
+    });
+  });
+
+  describe('setRoutesUrl', () => {
+    it('Should set the url to get routes', () => {
+      setRoutesUrl('teste');
+      expect(getRoutesUrl()).to.equal('teste');
+    });
+  });
+
+  describe('setOpenKeys', () => {
+    it('Should set the default open keys', () => {
+      setOpenKeys();
+      expect(getOpenKeys()[0]).to.equal(17);
+      expect(getOpenKeys()[1]).to.equal(32);
+    });
+
+    it('Should set the new open keys', () => {
+      setOpenKeys([17, 18]);
+      expect(getOpenKeys()[0]).to.equal(17);
+      expect(getOpenKeys()[1]).to.equal(18);
+    });
+
+    it('Should not change the open keys', () => {
+      setOpenKeys([32]);
+      expect(getFirstOpenKey()).to.equal(17);
+      expect(getSecondOpenKey()).to.equal(18);
     });
   });
 
