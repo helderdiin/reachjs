@@ -2,10 +2,6 @@ import {
   expect,
 } from 'chai';
 
-import {
-  spy
-} from 'sinon';
-
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
