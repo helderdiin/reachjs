@@ -34,16 +34,22 @@ describe('reachService file', () => {
     }];
   });
   describe('setRoutes', () => {
-    it('Should set none routes', () => {
-      expect(getRoutes()).to.be.undefined;
+    it('Should set none routes', (done) => {
       setRoutes();
-      expect(getRoutes()).to.be.empty;
+
+      getRoutes().then((r) => {
+        expect(r).to.be.empty;
+        done();
+      });
     });
 
-    it('Should set the new routes', () => {
-      expect(getRoutes()).to.be.empty;
+    it('Should set the new routes', (done) => {
       setRoutes(routes);
-      expect(getRoutes()).to.have.length.above(0);
+
+      getRoutes().then((r) => {
+        expect(r).to.have.length.above(0);
+        done();
+      });
     });
   });
 
@@ -54,12 +60,18 @@ describe('reachService file', () => {
   });
 
   describe('getRoute', () => {
-    it('Should return undefined', () => {
-      expect(getRoute()).to.be.undefined;
+    it('Should return undefined', (done) => {
+      getRoute().then((r) => {
+        expect(r).to.be.undefined;
+        done();
+      });
     });
 
-    it('Should return route data', () => {
-      expect(Object.keys(getRoute('/blandit/at/velit'))).to.have.length.above(0);
+    it('Should return route data', (done) => {
+      getRoute('/blandit/at/velit').then((r) => {
+        expect(Object.keys(r)).to.have.length.above(0);
+        done();
+      });
     });
   });
 
@@ -80,21 +92,28 @@ describe('reachService file', () => {
   });
 
   describe('itemSelected', () => {
-    it('Should return undefined', () => {
-      expect(itemSelected()).to.be.undefined;
+    it('Should return undefined', (done) => {
+      itemSelected().then((r) => {
+        expect(r).to.be.undefined;
+        done();
+      });
     });
 
-    it('Should change window.location to path', () => {
+    it('Should change window.location to path', (done) => {
       setOnSelect();
-      itemSelected('/suspendisse/commodo');
-      expect(window.location).to.equal('/suspendisse/commodo');
+      itemSelected('/suspendisse/commodo').then(() => {
+        expect(window.location).to.equal('/suspendisse/commodo');
+        done();
+      });
     });
 
-    it('Should execute onSelect method', () => {
+    it('Should execute onSelect method', (done) => {
       let temp = false;
       setOnSelect(() => { temp = true; });
-      itemSelected('/suspendisse/commodo');
-      expect(temp).to.be.true;
+      itemSelected('/suspendisse/commodo').then(() => {
+        expect(temp).to.be.true;
+        done();
+      });
     });
 
     it('Should set onSelect with method', () => {

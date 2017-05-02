@@ -36,15 +36,13 @@ export const getOnSelect = () => {
 };
 
 export const itemSelected = (route = '') => {
-  if (route) {
-    getRoute(route).then((routeData = {}) => {
-      if (data.onSelect && typeof data.onSelect === 'function') {
-        data.onSelect(routeData);
-      } else {
-        window.location = routeData.path;
-      }
-    });
-  }
+  return getRoute(route).then((routeData = {}) => {
+    if (data.onSelect && typeof data.onSelect === 'function') {
+      data.onSelect(routeData);
+    } else {
+      window.location = routeData.path;
+    }
+  });
 };
 
 export const setOpenKeys = (openKeys = [17, 32]) => {
