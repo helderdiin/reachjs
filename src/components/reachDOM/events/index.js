@@ -73,6 +73,16 @@ export const bindCloseEventToWindow = () => {
   $(window).on('keyup', keyUpEsc);
 };
 
+export const bindCloseEventToMask = () => {
+  getElements('reachjs').on('click', (e = {}) => {
+    const classes = $(e.target).attr('class') || '';
+
+    if (classes.indexOf('reachjs-wrapper') > -1 || classes.indexOf('reachjs-mask') > -1) {
+      closeReach();
+    }
+  });
+};
+
 const itemNotFound = () => {
   return getTemplates('itemFound')({
     data: {
@@ -128,12 +138,17 @@ export const bindClickEventToCloseButton = () => {
   getElements('reachjsClose').on('click', closeReach);
 };
 
+export const bindCloseEvents = () => {
+  bindCloseEventToWindow();
+  bindClickEventToCloseButton();
+  bindCloseEventToMask();
+};
+
 export const bindReachEvents = () => {
   bindOpenEventToWindow();
-  bindCloseEventToWindow();
   bindReachFinderEvents();
   bindClickEventToItem();
-  bindClickEventToCloseButton();
+  bindCloseEvents();
 };
 
 export default {
