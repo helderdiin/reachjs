@@ -26,7 +26,7 @@ const resetReach = () => {
 };
 
 export const bindOpenEventToWindow = () => {
-  const keyUpSpaceBar = (e = {}) => {
+  const keyUpSecondKey = (e = {}) => {
     const keyPressed = getKeyPressed(e);
 
     if (keyPressed === 32 || keyPressed === 0) {
@@ -35,24 +35,24 @@ export const bindOpenEventToWindow = () => {
     }
   };
 
-  const keyUpCtrl = (e = {}) => {
-    if (e.ctrlKey) {
-      $(window).off('keyup', keyUpSpaceBar);
+  const keyUpFirstKey = (e = {}) => {
+    if (getKeyPressed(e) === 17) {
+      $(window).off('keyup', keyUpSecondKey);
     }
 
     bindOpenEventToWindow();
   };
 
-  const keyDownCtrl = (e = {}) => {
-    if (e.ctrlKey) {
-      $(window).one('keyup', keyUpSpaceBar);
-      $(window).one('keyup', keyUpCtrl);
+  const keyDownFirstKey = (e = {}) => {
+    if (getKeyPressed(e) === 17) {
+      $(window).one('keyup', keyUpSecondKey);
+      $(window).one('keyup', keyUpFirstKey);
     } else {
       bindOpenEventToWindow();
     }
   };
 
-  $(window).one('keydown', keyDownCtrl);
+  $(window).one('keydown', keyDownFirstKey);
 };
 
 const closeReach = () => {
