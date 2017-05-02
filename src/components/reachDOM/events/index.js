@@ -9,6 +9,8 @@ import {
 import {
   getRoutes,
   itemSelected,
+  getFirstOpenKey,
+  getSecondOpenKey,
 } from '../../reachService';
 
 import {
@@ -27,16 +29,14 @@ const resetReach = () => {
 
 export const bindOpenEventToWindow = () => {
   const keyUpSecondKey = (e = {}) => {
-    const keyPressed = getKeyPressed(e);
-
-    if (keyPressed === 32 || keyPressed === 0) {
+    if (getKeyPressed(e) === getSecondOpenKey()) {
       showReach();
       getElements('finderInput').focus();
     }
   };
 
   const keyUpFirstKey = (e = {}) => {
-    if (getKeyPressed(e) === 17) {
+    if (getKeyPressed(e) === getFirstOpenKey()) {
       $(window).off('keyup', keyUpSecondKey);
     }
 
@@ -44,7 +44,7 @@ export const bindOpenEventToWindow = () => {
   };
 
   const keyDownFirstKey = (e = {}) => {
-    if (getKeyPressed(e) === 17) {
+    if (getKeyPressed(e) === getFirstOpenKey()) {
       $(window).one('keyup', keyUpSecondKey);
       $(window).one('keyup', keyUpFirstKey);
     } else {
