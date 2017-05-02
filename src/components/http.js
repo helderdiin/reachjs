@@ -1,8 +1,9 @@
-import { ajax } from 'jquery';
+import axios from 'axios';
 
-const getRoutes = (url = '') => {
+const getRoutes = (url) => {
   return new Promise((resolve, reject) => {
-    ajax(url).then((data = {}) => {
+    axios(url).then((response) => {
+      const data = response.data;
       let routes = [];
 
       if (Array.isArray(data)) {
