@@ -1,5 +1,7 @@
 import { cloneDeep } from 'lodash';
 
+import http from '../http';
+
 const data = {};
 
 export const normalizePaths = (routes = []) => {
@@ -16,7 +18,7 @@ export const setRoutes = (routes = []) => {
 };
 
 export const getRoutes = () => {
-  return Promise.resolve(cloneDeep(data.routes));
+  return data.routesUrl ? http.getRoutes(data.routesUrl) : Promise.resolve(cloneDeep(data.routes));
 };
 
 export const getRoute = (route = '') => {
