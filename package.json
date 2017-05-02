@@ -13,6 +13,7 @@
   "author": "Helder Traci <helderdiin.work@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "axios-mock-adapter": "^1.8.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -37,6 +38,7 @@
     "webpack-dev-server": "^2.4.4"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4"
   }
