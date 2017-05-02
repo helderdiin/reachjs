@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { debounce } from 'lodash';
 import { getKeyPressed } from '../../utils';
 import { getText } from '../../i18n';
 
@@ -92,7 +93,7 @@ const itemNotFound = () => {
 };
 
 export const bindReachFinderEvents = () => {
-  const inputReachFinder = (e = {}) => {
+  const inputReachFinder = debounce((e = {}) => {
     const valor = e.target.value.trim();
 
     const filterRoutes = (r) => {
@@ -122,7 +123,7 @@ export const bindReachFinderEvents = () => {
         },
       }));
     }
-  };
+  }, 300);
 
   getElements('finderInput').on('input', inputReachFinder);
 };
