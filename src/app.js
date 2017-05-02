@@ -1,8 +1,7 @@
 import reachjs from './reachjs';
 
-reachjs.setLocale('us');
-
 reachjs.init({
+  locale: 'us',
   routes: [{
     title: 'Home',
     path: 'home',

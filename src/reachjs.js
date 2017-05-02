@@ -14,6 +14,10 @@ import {
 import './styles/reachjs.scss';
 
 const init = (config = {}) => {
+  if (config.locale) {
+    setLocale(config.locale);
+  }
+
   addReachToDOM();
 
   setRoutes(config.routes);
