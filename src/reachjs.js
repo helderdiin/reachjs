@@ -6,6 +6,7 @@ import {
   setRoutes,
   setOnSelect,
   setOpenKeys,
+  setRoutesUrl,
 } from './components/reachService';
 
 import {
@@ -25,7 +26,12 @@ const init = (config = {}) => {
 
   addReachToDOM();
 
-  setRoutes(config.routes);
+  if (config.routesUrl) {
+    setRoutesUrl(config.routesUrl);
+  } else {
+    setRoutes(config.routes);
+  }
+
   setOnSelect(config.onSelect);
 };
 
