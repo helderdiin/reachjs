@@ -11,15 +11,15 @@ import http from '../src/components/http';
 
 describe('http file', () => {
   describe('getRoutes', () => {
-    mock.onGet('/invalid').reply(200, 0);
+    mock.onGet('/invalid?q=').reply(200, 0);
 
-    mock.onGet('/empty').reply(200, []);
+    mock.onGet('/empty?q=').reply(200, []);
 
-    mock.onGet('/emptyWithRoutes').reply(200, {
+    mock.onGet('/emptyWithRoutes?q=').reply(200, {
       "routes": []
     });
 
-    mock.onGet('/threeRoutes').reply(200, [
+    mock.onGet('/threeRoutes?q=').reply(200, [
       {
         "title": "Home",
         "path": "home",
@@ -35,7 +35,7 @@ describe('http file', () => {
       }
     ]);
 
-    mock.onGet('/threeRoutesWithRoutes').reply(200, {
+    mock.onGet('/threeRoutesWithRoutes?q=').reply(200, {
       "routes": [{
         "title": "Home",
         "path": "home",
@@ -45,6 +45,22 @@ describe('http file', () => {
         "path": "/quem_somos",
         "description": "Descrição da Quem Somos"
       }, {
+        "title": "Contato",
+        "path": "contato",
+        "description": "Descrição da Contato"
+      }]
+    });
+
+    mock.onGet('/oneRoute?q=contato').reply(200, [
+      {
+        "title": "Contato",
+        "path": "contato",
+        "description": "Descrição da Contato"
+      }
+    ]);
+
+    mock.onGet('/oneRouteWithRoutes?q=contato').reply(200, {
+      "routes": [{
         "title": "Contato",
         "path": "contato",
         "description": "Descrição da Contato"
@@ -72,6 +88,17 @@ describe('http file', () => {
 
         http.getRoutes('threeRoutesWithRoutes').then((r) => {
           expect(r.length).to.equal(3);
+          done();
+        });
+      });
+    });
+
+    it('Should get one route filtered', (done) => {
+      http.getRoutes('oneRoute', 'contato').then((r) => {
+        expect(r.length).to.equal(1);
+
+        http.getRoutes('oneRouteWithRoutes', 'contato').then((r) => {
+          expect(r.length).to.equal(1);
           done();
         });
       });

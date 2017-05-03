@@ -26,11 +26,11 @@ import {
 import http from '../src/components/http';
 
 describe('reachService file', () => {
-  let routes;
-
   global.window = {
     location: '',
   };
+
+  let routes;
 
   beforeEach(() => {
     routes = [{
@@ -45,26 +45,6 @@ describe('reachService file', () => {
       path: 'suspendisse/commodo',
       description: 'mauris purus, tempus sagittis massa faucibus sit amet',
     }];
-  });
-
-  describe('setRoutes', () => {
-    it('Should set none routes', (done) => {
-      setRoutes();
-
-      getRoutes().then((r) => {
-        expect(r).to.be.empty;
-        done();
-      });
-    });
-
-    it('Should set the new routes', (done) => {
-      setRoutes(routes);
-
-      getRoutes().then((r) => {
-        expect(r).to.have.length.above(0);
-        done();
-      });
-    });
   });
 
   describe('getRoutes', () => {
@@ -102,12 +82,26 @@ describe('reachService file', () => {
         done();
       });
     });
+
+    it('Should get filtered routes', (done) => {
+      setRoutesUrl();
+      setRoutes(routes);
+
+      getRoutes('amet').then((r) => {
+        expect(r.length).to.equal(2);
+        done();
+      });
+    });
   });
 
   describe('setRoutesUrl', () => {
     it('Should set the url to get routes', () => {
       setRoutesUrl('teste');
       expect(getRoutesUrl()).to.equal('teste');
+    });
+
+    afterEach(() => {
+      setRoutesUrl();
     });
   });
 
@@ -134,6 +128,26 @@ describe('reachService file', () => {
   describe('normalizePaths', () => {
     it('Should return empty', () => {
       expect(normalizePaths()).to.be.empty;
+    });
+  });
+
+  describe('setRoutes', () => {
+    it('Should set none routes', (done) => {
+      setRoutes();
+
+      getRoutes().then((r) => {
+        expect(r).to.be.empty;
+        done();
+      });
+    });
+
+    it('Should set the new routes', (done) => {
+      setRoutes(routes);
+
+      getRoutes().then((r) => {
+        expect(r).to.have.length.above(0);
+        done();
+      });
     });
   });
 
