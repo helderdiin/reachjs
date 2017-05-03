@@ -18,7 +18,7 @@ export const generateTemplates = () => {
 
   const body = template('' +
   '<div class="reach-finder">' +
-    '<input class="reach-finder__input"/>' +
+    '<input class="reach-finder__input" tabindex="1"/>' +
   '</div>' +
   '<div class="items-found style-scroll">' +
     '<ul class="items-found__list">' +
@@ -26,7 +26,7 @@ export const generateTemplates = () => {
     '</ul>' +
   '</div>');
 
-  const itemFound = template('<li data-path="<%= data.path || "" %>" class="<%= data.customClass || "" %>"><%= data.text %></li>');
+  const itemFound = template('<li tabindex="<%= data.index ? data.index + 1 : "" %>" data-path="<%= data.path || "" %>" class="<%= data.customClass || "" %>"><%= data.text %></li>');
 
   templates = {
     main,

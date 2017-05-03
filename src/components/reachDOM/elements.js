@@ -13,6 +13,9 @@ const selectors = {
   foundList: '.items-found__list',
   reachjsClose: '.reachjs-fechar',
   listItem: '.items-found__list .list__item',
+  firstItemList: '.items-found__list .list__item:first',
+  listItemActive: '.list__item.list__item--active',
+  container: '.reachjs-container',
 };
 
 export const selectElements = () => {
@@ -23,13 +26,24 @@ export const selectElements = () => {
     foundList: $(selectors.foundList),
     reachjsClose: $(selectors.reachjsClose),
     listItem: $(selectors.listItem),
+    firstItemList: $(selectors.firstItemList),
+    listItemActive: $(selectors.listItemActive),
+    container: $(selectors.container),
   };
 
   return elements;
 };
 
-export const getElements = (item = '') => {
-  return item && elements[item] ? elements[item] : elements;
+export const getElements = (item = '', refresh = false) => {
+  if (item && elements[item]) {
+    if (refresh) {
+      return $(selectors[item]);
+    }
+
+    return elements[item];
+  }
+
+  return elements;
 };
 
 export const getSelectors = (item = '') => {

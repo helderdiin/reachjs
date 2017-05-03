@@ -97,12 +97,13 @@ export const bindReachFinderEvents = () => {
   const inputReachFinder = debounce((e = {}) => {
     const valor = e.target.value.trim();
 
-    const reduceItemsFound = (p, c) => {
+    const reduceItemsFound = (p, c, i) => {
       return p + getTemplates('itemFound')({
         data: {
           text: c.title,
           customClass: 'list__item',
           path: c.path,
+          index: i + 1,
         },
       });
     };
@@ -110,6 +111,7 @@ export const bindReachFinderEvents = () => {
     if (valor.length > 0) {
       getRoutes(valor).then((routes = []) => {
         getElements('foundList').html(routes.reduce(reduceItemsFound, '') || itemNotFound());
+        getElements('firstItemList', true).addClass(getClasses('listItemActive'));
       });
     } else {
       getElements('foundList').html(getTemplates('itemFound')({
@@ -138,6 +140,7 @@ export const bindClickEventToCloseButton = () => {
 
 export const bindActiveEventToItemList = () => {
   const mouseEnterListItem = (e = {}) => {
+    getElements('listItem', true).removeClass(getClasses('listItemActive'));
     $(e.target).addClass(getClasses('listItemActive'));
   };
 
@@ -147,6 +150,55 @@ export const bindActiveEventToItemList = () => {
 
   getElements('reachjs').on('mouseenter', getSelectors('listItem'), mouseEnterListItem);
   getElements('reachjs').on('mouseleave', getSelectors('listItem'), mouseLeaveListItem);
+};
+
+export const bindArrowKeyMouveToList = () => {
+  getElements('body').on('keydown', (e = {}) => {
+    if (getElements('reachjs').is(':visible')) {
+      const keyPressed = getKeyPressed(e);
+
+      if (keyPressed === 38 || keyPressed === 40 || keyPressed === 9) {
+        e.preventDefault();
+
+        const listItemActive = getElements('listItemActive', true);
+
+        if (listItemActive.length > 0) {
+          if (keyPressed === 38) {
+            const prevElement = listItemActive.prev();
+
+            if (prevElement.length > 0) {
+              listItemActive.removeClass(getClasses('listItemActive'));
+              prevElement.addClass(getClasses('listItemActive'));
+            }
+          } else if (keyPressed === 40 || keyPressed === 9) {
+            const nextElement = listItemActive.next();
+
+            if (nextElement.length > 0) {
+              listItemActive.removeClass(getClasses('listItemActive'));
+              nextElement.addClass(getClasses('listItemActive'));
+            }
+          }
+        } else {
+          getElements('firstItemList', true).addClass(getClasses('listItemActive'));
+        }
+      }
+    }
+  });
+};
+
+export const bindSelectItemWithEnter = () => {
+  getElements('body').on('keydown', (e = {}) => {
+    if (getElements('reachjs').is(':visible') && getKeyPressed(e) === 13) {
+      e.preventDefault();
+
+      const listItemActive = getElements('listItemActive', true);
+
+      if (listItemActive.length > 0) {
+        itemSelected(listItemActive[0].dataset.path);
+        closeReach();
+      }
+    }
+  });
 };
 
 export const bindCloseEvents = () => {
@@ -161,6 +213,8 @@ export const bindReachEvents = () => {
   bindClickEventToItem();
   bindCloseEvents();
   bindActiveEventToItemList();
+  bindArrowKeyMouveToList();
+  bindSelectItemWithEnter();
 };
 
 export default {
@@ -170,4 +224,6 @@ export default {
   bindReachEvents,
   bindClickEventToItem,
   bindActiveEventToItemList,
+  bindArrowKeyMouveToList,
+  bindSelectItemWithEnter,
 };
