@@ -28,11 +28,13 @@ const init = (config = {}) => {
 
   if (config.routesUrl) {
     setRoutesUrl(config.routesUrl);
-  } else {
+  } else if (config.routes) {
     setRoutes(config.routes);
   }
 
-  setOnSelect(config.onSelect);
+  if (config.onSelect) {
+    setOnSelect(config.onSelect);
+  }
 };
 
 setLocale('br');
@@ -42,4 +44,7 @@ export default {
   init,
   setLocale,
   setOpenKeys,
+  setOnSelect,
+  setRoutesUrl,
+  setRoutes,
 };
