@@ -17,8 +17,23 @@ export const setRoutes = (routes = []) => {
   data.routes = normalizePaths(routes);
 };
 
-export const getRoutes = () => {
-  return data.routesUrl ? http.getRoutes(data.routesUrl) : Promise.resolve(cloneDeep(data.routes));
+export const getRoutes = (q) => {
+  if (data.routesUrl) {
+    return new Promise((resolve, reject) => {
+      http.getRoutes(data.routesUrl, q).then((routes) => {
+        setRoutes(routes);
+        resolve(routes);
+      }, reject);
+    });
+  }
+
+  if (q) {
+    return Promise.resolve(cloneDeep(data.routes.filter((r) => {
+      return `${r.title} ${r.description}`.toLowerCase().indexOf(q.toLowerCase()) > -1;
+    })));
+  }
+
+  return Promise.resolve(cloneDeep(data.routes));
 };
 
 export const getRoute = (route = '') => {

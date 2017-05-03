@@ -96,10 +96,6 @@ export const bindReachFinderEvents = () => {
   const inputReachFinder = debounce((e = {}) => {
     const valor = e.target.value.trim();
 
-    const filterRoutes = (r) => {
-      return `${r.title} ${r.description}`.toLowerCase().indexOf(valor.toLowerCase()) > -1;
-    };
-
     const reduceItemsFound = (p, c) => {
       return p + getTemplates('itemFound')({
         data: {
@@ -111,10 +107,8 @@ export const bindReachFinderEvents = () => {
     };
 
     if (valor.length > 0) {
-      getRoutes().then((routes = []) => {
-        const itemsFound = routes.filter(filterRoutes);
-
-        getElements('foundList').html(itemsFound.reduce(reduceItemsFound, '') || itemNotFound());
+      getRoutes(valor).then((routes = []) => {
+        getElements('foundList').html(routes.reduce(reduceItemsFound, '') || itemNotFound());
       });
     } else {
       getElements('foundList').html(getTemplates('itemFound')({

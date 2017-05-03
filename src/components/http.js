@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const getRoutes = (url) => {
+const getRoutes = (url, route = '') => {
   return new Promise((resolve, reject) => {
-    axios(url).then((response) => {
+    axios(`${url}?q=${route}`).then((response) => {
       const data = response.data;
       let routes = [];
 
