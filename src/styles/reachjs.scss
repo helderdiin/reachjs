@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #reachjs .items-found__list li {
   padding: 8px 10px;
-  &.list__item:hover {
+  &.list__item--active {
     background-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }

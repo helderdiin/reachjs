@@ -2,6 +2,10 @@ import $ from 'jquery';
 
 let elements = {};
 
+const classes = {
+  listItemActive: 'list__item--active',
+};
+
 const selectors = {
   body: 'body',
   reachjs: '#reachjs',
@@ -32,8 +36,13 @@ export const getSelectors = (item = '') => {
   return item && selectors[item] ? selectors[item] : selectors;
 };
 
+export const getClasses = (item = '') => {
+  return item && classes[item] ? classes[item] : classes;
+};
+
 export default {
   selectElements,
   getElements,
   getSelectors,
+  getClasses,
 };

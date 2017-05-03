@@ -22,6 +22,7 @@ import {
 import {
   getSelectors,
   getElements,
+  getClasses,
 } from '../elements';
 
 const resetReach = () => {
@@ -135,6 +136,19 @@ export const bindClickEventToCloseButton = () => {
   getElements('reachjsClose').on('click', closeReach);
 };
 
+export const bindActiveEventToItemList = () => {
+  const mouseEnterListItem = (e = {}) => {
+    $(e.target).addClass(getClasses('listItemActive'));
+  };
+
+  const mouseLeaveListItem = (e = {}) => {
+    $(e.target).removeClass(getClasses('listItemActive'));
+  };
+
+  getElements('reachjs').on('mouseenter', getSelectors('listItem'), mouseEnterListItem);
+  getElements('reachjs').on('mouseleave', getSelectors('listItem'), mouseLeaveListItem);
+};
+
 export const bindCloseEvents = () => {
   bindCloseEventToWindow();
   bindClickEventToCloseButton();
@@ -146,6 +160,7 @@ export const bindReachEvents = () => {
   bindReachFinderEvents();
   bindClickEventToItem();
   bindCloseEvents();
+  bindActiveEventToItemList();
 };
 
 export default {
@@ -154,4 +169,5 @@ export default {
   bindReachFinderEvents,
   bindReachEvents,
   bindClickEventToItem,
+  bindActiveEventToItemList,
 };
