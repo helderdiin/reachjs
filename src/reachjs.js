@@ -1,3 +1,5 @@
+import NProgress from 'nprogress';
+
 import {
   addReachToDOM,
 } from './components/reachDOM';
@@ -14,6 +16,9 @@ import {
 } from './components/i18n';
 
 import './styles/reachjs.scss';
+
+// NProgress config
+NProgress.configure({ showSpinner: false, parent: '#nprogress-container' });
 
 const init = (config = {}) => {
   if (config.locale) {

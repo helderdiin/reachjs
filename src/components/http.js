@@ -1,6 +1,9 @@
 import axios from 'axios';
+import NProgress from 'nprogress';
 
 const getRoutes = (url, route = '') => {
+  NProgress.start();
+
   return new Promise((resolve, reject) => {
     axios(`${url}?q=${route}`).then((response) => {
       const data = response.data;
@@ -11,6 +14,8 @@ const getRoutes = (url, route = '') => {
       } else if (data.routes && Array.isArray(data.routes)) {
         routes = data.routes;
       }
+
+      NProgress.done();
 
       resolve(routes);
     }, reject);
