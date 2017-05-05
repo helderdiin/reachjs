@@ -2,6 +2,12 @@ import {
   expect,
 } from 'chai';
 
+import {
+  stub,
+} from 'sinon';
+
+import NProgress from 'nprogress';
+
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
@@ -11,6 +17,19 @@ import http from '../src/components/http';
 
 describe('http file', () => {
   describe('getRoutes', () => {
+    let stubNPStart;
+    let stubNPDone;
+
+    beforeEach(() => {
+      stubNPStart = stub(NProgress, 'start').callsFake(() => {});
+      stubNPDone = stub(NProgress, 'done').callsFake(() => {});
+    });
+
+    afterEach(() => {
+      stubNPStart.restore();
+      stubNPDone.restore();
+    });
+
     mock.onGet('/invalid?q=').reply(200, 0);
 
     mock.onGet('/empty?q=').reply(200, []);
