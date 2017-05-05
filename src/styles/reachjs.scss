@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 @import './style-scroll.scss';
+@import './nprogress.css';
 
 html, body, input, textarea, select, button {
   font-family: 'Muli', sans-serif !important;
@@ -105,4 +106,13 @@ h1, h2, h3, h4, h5, h6 {
   &:hover {
     cursor: pointer;
   }
+}
+
+#nprogress-container {
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
 }
