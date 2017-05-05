@@ -1,6 +1,6 @@
 {
   "name": "reachjs",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Biblioteca JavaScript para pesquisa rápida de páginas em sua aplicação.",
   "main": "dist/reachjs.js",
   "scripts": {
