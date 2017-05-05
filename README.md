@@ -22,10 +22,11 @@ Você pode fazer o download direto do arquivo [clicando aqui](https://raw.github
 <script type="text/javascript" src="./libs/reachjs.js"></script>
 ```
 
-Ou pode também fazer o download via NPM.
+Ou pode também fazer o download via NPM ou Yarn.
 
 ``` bash
 npm install --save reachjs
+yarn add reachjs
 ```
 
 E importa-lo nos arquivos `.js` utilizando [webpack](https://webpack.github.io/ "webpack module bundler") ou [browserify](http://browserify.org/ "browserify") por exemplo.
