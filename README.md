@@ -190,7 +190,7 @@ reachjs.init();
 ## Pendências
 
 * Acesso as rotas via URL com autenticação
-* Demonstração visual de carregando enquanto busca as rotas via URL
+* ~~Demonstração visual de carregando enquanto busca as rotas via URL~~ [commit](https://github.com/helderdiin/reachjs/commit/9a84a28c52e4f974e824871b898e33c93070367c) e [commit](https://github.com/helderdiin/reachjs/commit/6785f6894871cc84ea4c848af58fa2c9d1e14ae0)
 * Parametrizar o filtro de pesquisa da URL (utilizando ?q= fixo por enquanto)
 * Melhorar a forma filtro para encontrar mais resultados
 
