@@ -2,6 +2,8 @@ import { cloneDeep } from 'lodash';
 
 import http from '../http';
 
+import { removeWordAccentuation } from '../utils';
+
 const data = {};
 
 export const normalizePaths = (routes = []) => {
@@ -28,9 +30,19 @@ export const getRoutes = (q) => {
   }
 
   if (q) {
-    return Promise.resolve(cloneDeep(data.routes.filter((r) => {
-      return `${r.title} ${r.description}`.toLowerCase().indexOf(q.toLowerCase()) > -1;
-    })));
+    const mainRoutes = data.routes.filter((r) => {
+      return removeWordAccentuation(`${r.title} ${r.description}`.toLowerCase()).indexOf(removeWordAccentuation(q.toLowerCase())) > -1;
+    });
+
+    const otherRoutes = removeWordAccentuation(q.toLowerCase()).split(' ').reduce((p, c) => {
+      const routes = data.routes.filter((r) => {
+        return removeWordAccentuation(`${r.title} ${r.description}`.toLowerCase()).indexOf(c) > -1 && [...p, ...mainRoutes].find(m => m.path === r.path) === undefined;
+      });
+
+      return [...p, ...routes];
+    }, []);
+
+    return Promise.resolve([...mainRoutes, ...otherRoutes]);
   }
 
   return Promise.resolve(cloneDeep(data.routes));
