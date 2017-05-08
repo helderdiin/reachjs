@@ -153,37 +153,47 @@ export const bindActiveEventToItemList = () => {
 };
 
 export const bindArrowKeyMouveToList = () => {
-  getElements('body').on('keydown', (e = {}) => {
+  let pressingShift = false;
+
+  const keyUpShift = (e = {}) => {
+    if (getKeyPressed(e) === 16) {
+      pressingShift = false;
+      getElements('body').off('keyup', keyUpShift);
+    }
+  };
+
+  const keyDownBody = (e = {}) => {
     if (getElements('reachjs').is(':visible')) {
       const keyPressed = getKeyPressed(e);
 
-      if (keyPressed === 38 || keyPressed === 40 || keyPressed === 9) {
+      if (keyPressed === 16) {
+        pressingShift = true;
+        getElements('body').on('keyup', keyUpShift);
+      } else if (keyPressed === 38 || keyPressed === 40 || keyPressed === 9) {
         e.preventDefault();
 
         const listItemActive = getElements('listItemActive', true);
+        let element;
 
         if (listItemActive.length > 0) {
-          if (keyPressed === 38) {
-            const prevElement = listItemActive.prev();
+          if (keyPressed === 38 || (keyPressed === 9 && pressingShift)) {
+            element = listItemActive.prev();
+          } else if (keyPressed === 40 || (keyPressed === 9 && !pressingShift)) {
+            element = listItemActive.next();
+          }
 
-            if (prevElement.length > 0) {
-              listItemActive.removeClass(getClasses('listItemActive'));
-              prevElement.addClass(getClasses('listItemActive'));
-            }
-          } else if (keyPressed === 40 || keyPressed === 9) {
-            const nextElement = listItemActive.next();
-
-            if (nextElement.length > 0) {
-              listItemActive.removeClass(getClasses('listItemActive'));
-              nextElement.addClass(getClasses('listItemActive'));
-            }
+          if (element && element.length > 0) {
+            listItemActive.removeClass(getClasses('listItemActive'));
+            element.addClass(getClasses('listItemActive'));
           }
         } else {
           getElements('firstItemList', true).addClass(getClasses('listItemActive'));
         }
       }
     }
-  });
+  };
+
+  getElements('body').on('keydown', keyDownBody);
 };
 
 export const bindSelectItemWithEnter = () => {
