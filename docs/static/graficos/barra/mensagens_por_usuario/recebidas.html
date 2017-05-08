@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReachJS | Exemplo de página estática</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/reachjs.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index.html">ReachJS</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Principal<b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sobre nós</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="sobre_nos/quem-somos.html">Quem somos</a></li>
+                                <li><a href="sobre_nos/contato.html">Contato</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog/artigos.html">Artigos</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notícias</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mais lidas</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="blog/noticias/mais_lidas/javascript-e-a-melhor-linguagem.html">JavaScript é a melhor linguagem?</a></li>
+                                                <li><a href="blog/noticias/mais_lidas/surface-laptop-ou-macbook.html">Surface Laptop ou MacBook?</a></li>
+                                                <li><a href="blog/noticias/mais_lidas/seus-aplicativos-estao-te-monitorando.html">Seus aplicativos estão te monitorando!</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mais recentes</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="blog/noticias/mais_recentes/cinco-tecnologias-para-ficar-de-olho.html">5 tecnologias para ficar de olho</a></li>
+                                                <li><a href="blog/noticias/mais_recentes/apple-tv-ou-google-chromecast.html">Apple TV ou Google ChromeCast?</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Em alta</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="blog/noticias/em_alta/descubra-todas-as-informacoes-que-a-netflix-sabe-sobre-voce.html">Descubra todas as informações que a Netflix sabe sobre você</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sistema<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gráficos</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Barra</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mensagens por usuário</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="active"><a href="graficos/barra/mensagens_por_usuario/recebidas.html">Recebidas</a></li>
+                                                <li><a href="graficos/barra/mensagens_por_usuario/enviadas.html">Enviadas</a></li>
+                                                <li><a href="graficos/barra/mensagens_por_usuario/arquivadas.html">Arquivadas</a></li>
+                                                <li><a href="graficos/barra/mensagens_por_usuario/excluidas.html">Excluídas</a></li>
+                                                <li><a href="graficos/barra/mensagens_por_usuario/geral.html">Geral</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pizza</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Novos usuários</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="graficos/pizza/novos_usuarios/homens.html">Homens</a></li>
+                                                <li><a href="graficos/pizza/novos_usuarios/mulheres.html">Mulheres</a></li>
+                                                <li><a href="graficos/pizza/novos_usuarios/geral.html">Geral</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container">
+    <div class="navbar-template text-center">
+        <h1>Mensagens recebidas por usuário</h1>
+        <p class="lead text-info">Representação de mensagens recebidas separadas por usuários do sistema.</p>
+    </div>
+</div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>
