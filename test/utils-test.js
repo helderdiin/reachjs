@@ -4,6 +4,7 @@ import {
 
 import {
   getKeyPressed,
+  removeWordAccentuation,
 } from '../src/components/utils';
 
 describe('Utils file', () => {
@@ -42,6 +43,16 @@ describe('Utils file', () => {
 
       expect(ret).to.be.defined;
       expect(ret).to.equal(13);
+    });
+  });
+
+  describe('removeWordAccentuation', () => {
+    it('Should return empty', () => {
+      expect(removeWordAccentuation()).to.be.empty;
+    });
+
+    it('Should return words without accentuation', () => {
+      expect(removeWordAccentuation('âÂàÀáÁãÃêÊèÈéÉîÎìÌíÍõÕôÔòÒóÓüÜûÛúÚùÙçÇ')).to.equal('aAaAaAaAeEeEeEiIiIiIoOoOoOoOuUuUuUuUcC');
     });
   });
 });
