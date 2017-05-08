@@ -71,5 +71,8 @@ reachjs.init({
     title: 'Novos usuário',
     path: 'graficos/pizza/novos_usuarios/geral.html',
     description: 'Representação de todos os novos usuários do sistema.',
-  }]
+  }],
+  onSelect: (data) => {
+    window.location = `/reachjs/static${data.path}`;
+  },
 });
