@@ -6,13 +6,13 @@
 
 > Biblioteca JavaScript para pesquisa rápida de páginas em sua aplicação.
 
-Seus usuários poderão encontrar mais fácilmente as páginas da sua aplicação utilizando apenas o teclado.
+Seus usuários poderão encontrar mais facilmente as páginas da sua aplicação utilizando apenas o teclado.
 
-ReachJS funciona básicamente como uma ferramenta de busca para o usuário (como o Pesquisar do Windows ou o Spotlight do macOS), utilizando os dados que são passados na inicialização da biblioteca.
+ReachJS funciona basicamente como uma ferramenta de busca para o usuário (como o Pesquisar do Windows ou o Spotlight do macOS), utilizando os dados que são passados na inicialização da biblioteca.
 
 Veja alguns exemplos
 
-* [Página estática](http://helderdiin.github.io/reachjs/examples/static.html "Exemplo página estática")
+* [Página estática](https://helderdiin.github.io/reachjs/static/index.html "Exemplo página estática")
 
 ## Instalação
 
@@ -41,13 +41,13 @@ var reachjs = require('reachjs');
 
 ## Utilização
 
-Para inicializar a biblioteca, o único parâmetro obrigatório são as **rotas** disponíveis da sua aplicação. As demais configurações tem seus valores padrões caso você não queira customiza-los.
+Para inicializar a biblioteca, o único parâmetro obrigatório são as **rotas** disponíveis da sua aplicação. As demais configurações têm seus valores padrões caso você não queira customizá-los.
 
 ### Rotas
 
 O parâmetro de **rotas** pode ser passado tanto como um array de items como uma URL para serem resgatadas.
 
-Para carregar como um array de items é necessário passar a chave ``routes`` no objeto de inicialização.
+Para carregar como um array de items é necessário passar a chave `routes` no objeto de inicialização.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -69,7 +69,7 @@ reachjs.init({
 });
 ```
 
-Ou utilizar o método ``setRoutes`` exposto pela biblioteca.
+Ou utilizar o método `setRoutes` exposto pela biblioteca.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -79,7 +79,7 @@ reachjs.setRoutes([ ... ]); // mesmo array do exemplo anterior
 reachjs.init();
 ```
 
-Para carregar os items por uma URL é necessário passar a chave ``routesUrl`` no objeto de inicialização.
+Para carregar os items por uma URL é necessário passar a chave `routesUrl` no objeto de inicialização.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -89,7 +89,7 @@ reachjs.init({
 });
 ```
 
-Ou utilizar o método ``setRoutesUrl`` exposto pela biblioteca.
+Ou utilizar o método `setRoutesUrl` exposto pela biblioteca.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -108,7 +108,7 @@ Os idiomas com suporte são:
 
 O idioma padrão é o português.
 
-Para selecionar um idioma diferente é necessário passar a chave ``locale`` no objeto de inicialização.
+Para selecionar um idioma diferente é necessário passar a chave `locale` no objeto de inicialização.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -118,7 +118,7 @@ reachjs.init({
 });
 ```
 
-Ou utilizar o método ``setLocale`` exposto pela biblioteca.
+Ou utilizar o método `setLocale` exposto pela biblioteca.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -130,11 +130,11 @@ reachjs.init();
 
 ### Teclas para disparo
 
-Você pode customizar as teclas que irão fazer o ReachJS aparecer na tela. É obrigatório passar 2 teclas, sendo que a primeira tecla deverá obrigatóriamente ficar precionada e a segunda ser apertada durante o precionamento da primeira tecla.
+Você pode customizar as teclas que irão fazer o ReachJS aparecer na tela. É obrigatório passar 2 teclas, sendo que a primeira tecla deverá obrigatoriamente ficar pressionada e a segunda ser apertada durante o pressionamento da primeira tecla.
 
 As teclas padrões são `CTRL` + `SPACEBAR` e seus respectivos keyCodes são `17` e `32`.
 
-Para utilizar telcas de disparo diferentes é necessário passar a chave ``openKeys`` no objeto de inicialização.
+Para utilizar teclas de disparo diferentes é necessário passar a chave `openKeys` no objeto de inicialização.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -144,7 +144,7 @@ reachjs.init({
 });
 ```
 
-Ou utilizar o método ``setOpenKeys`` exposto pela biblioteca.
+Ou utilizar o método `setOpenKeys` exposto pela biblioteca.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -162,7 +162,7 @@ Você pode customizar o evento que é disparado sempre que o usuário escolher u
 
 Por padrão o ReachJS vai apenas redirecionar o usuário para o parâmetro `path` passado no objeto da rota selecionada.
 
-Para disparar um evento diferente é necessário passar a chave ``onSelect`` no objeto de inicialização.
+Para disparar um evento diferente é necessário passar a chave `onSelect` no objeto de inicialização.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -175,7 +175,7 @@ reachjs.init({
 });
 ```
 
-Ou utilizar o método ``setOnSelect`` exposto pela biblioteca.
+Ou utilizar o método `setOnSelect` exposto pela biblioteca.
 
 ``` javascript
 import reachjs from 'reachjs';
@@ -189,7 +189,7 @@ reachjs.init();
 
 ## Pendências
 
-* Acesso as rotas via URL com autenticação
+* Acesso às rotas via URL com autenticação
 * ~~Demonstração visual de carregando enquanto busca as rotas via URL~~ [commit](https://github.com/helderdiin/reachjs/commit/9a84a28c52e4f974e824871b898e33c93070367c) e [commit](https://github.com/helderdiin/reachjs/commit/6785f6894871cc84ea4c848af58fa2c9d1e14ae0)
 * Parametrizar o filtro de pesquisa da URL (utilizando ?q= fixo por enquanto)
 * Melhorar a forma filtro para encontrar mais resultados
