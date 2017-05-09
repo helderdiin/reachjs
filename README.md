@@ -99,6 +99,32 @@ reachjs.setRoutesUrl('http://app.minhaaplicacao.com.br/sistema/rotas');
 reachjs.init();
 ```
 
+Para configurações especiais na url de rotas você pode utilizar a chave `routesConfig` no objeto de inicialização. As alterações que podem ser feitas são:
+
+* Parâmetro de pesquisa da URL (searchQueryParam), que por padrão é `q`
+
+``` javascript
+import reachjs from 'reachjs';
+
+reachjs.init({
+  routesConfig: {
+    searchQueryParam: 'search'
+  }
+});
+```
+
+Ou utilizar o método `setRoutesConfig` exposto pela biblioteca.
+
+``` javascript
+import reachjs from 'reachjs';
+
+reachjs.setRoutesConfig({
+  searchQueryParam: 'search'
+});
+
+reachjs.init();
+```
+
 ### Internacionalização
 
 Os idiomas com suporte são:
