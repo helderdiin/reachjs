@@ -6,9 +6,13 @@ const getRoutes = (config, route = '') => {
 
   const { url } = config;
   const searchQueryParam = config.searchQueryParam || 'q';
+  const customHeader = config.customHeader || {};
 
   return new Promise((resolve, reject) => {
-    axios(`${url}?${searchQueryParam}=${route}`).then((response) => {
+    axios({
+      url: `${url}?${searchQueryParam}=${route}`,
+      headers: customHeader,
+    }).then((response) => {
       const data = response.data;
       let routes = [];
 

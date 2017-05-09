@@ -88,6 +88,20 @@ describe('http file', () => {
       }]
     });
 
+    mock.onGet('/oneRoute?search=quem').reply((config) => {
+      if (config.headers && config.headers.Authorization === 'UmVhY2hKUw==') {
+        return [200, [
+          {
+            "title": "Quem Somos",
+            "path": "/quem_somos",
+            "description": "Descrição da Quem Somos"
+          }
+        ]];
+      }
+
+      return [403];
+    });
+
     it('Should get empty routes', (done) => {
       http.getRoutes({ url: 'empty' }).then((r) => {
         expect(r).to.be.empty;
@@ -125,9 +139,23 @@ describe('http file', () => {
       });
     });
 
-    it('Should get empty routes with diferent searchQueryParam', () => {
+    it('Should get empty routes with diferent searchQueryParam', (done) => {
       http.getRoutes({ url: 'empty', searchQueryParam: 'search' }).then((r) => {
         expect(r).to.be.empty;
+        done();
+      });
+    });
+
+    it('Should get one route filtered with diferent searchQueryParam and Authorization header', (done) => {
+      http.getRoutes({
+        url: 'oneRoute',
+        searchQueryParam: 'search',
+        customHeader: {
+          Authorization: 'UmVhY2hKUw=='
+        }
+      }, 'quem').then((r) => {
+        expect(r.length).to.equal(1);
+        done();
       });
     });
   });
