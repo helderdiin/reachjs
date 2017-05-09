@@ -9,6 +9,7 @@ import {
   setOnSelect,
   setOpenKeys,
   setRoutesUrl,
+  setRoutesConfig,
 } from './components/reachService';
 
 import {
@@ -37,6 +38,10 @@ const init = (config = {}) => {
     setRoutes(config.routes);
   }
 
+  if (config.routesConfig) {
+    setRoutesConfig(config.routesConfig);
+  }
+
   if (config.onSelect) {
     setOnSelect(config.onSelect);
   }
@@ -52,4 +57,5 @@ export default {
   setOnSelect,
   setRoutesUrl,
   setRoutes,
+  setRoutesConfig,
 };

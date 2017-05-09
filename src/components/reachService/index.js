@@ -22,7 +22,7 @@ export const setRoutes = (routes = []) => {
 export const getRoutes = (q) => {
   if (data.routesUrl) {
     return new Promise((resolve, reject) => {
-      http.getRoutes(data.routesUrl, q).then((routes) => {
+      http.getRoutes(data.routesConfig, q).then((routes) => {
         setRoutes(routes);
         resolve(routes);
       }, reject);
@@ -91,11 +91,24 @@ export const getSecondOpenKey = () => {
 };
 
 export const setRoutesUrl = (routesUrl) => {
+  data.routesConfig = data.routesConfig || {};
+
   data.routesUrl = routesUrl;
+  data.routesConfig.url = routesUrl;
 };
 
 export const getRoutesUrl = () => {
   return data.routesUrl;
+};
+
+export const setRoutesConfig = (config) => {
+  data.routesConfig = data.routesConfig || {};
+
+  data.routesConfig = Object.assign({}, data.routesConfig, config);
+};
+
+export const getRoutesConfig = () => {
+  return cloneDeep(data.routesConfig);
 };
 
 export default {
@@ -112,4 +125,6 @@ export default {
   getSecondOpenKey,
   setRoutesUrl,
   getRoutesUrl,
+  setRoutesConfig,
+  getRoutesConfig,
 };

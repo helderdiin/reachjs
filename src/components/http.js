@@ -1,11 +1,14 @@
 import axios from 'axios';
 import NProgress from 'nprogress';
 
-const getRoutes = (url, route = '') => {
+const getRoutes = (config, route = '') => {
   NProgress.start();
 
+  const { url } = config;
+  const searchQueryParam = config.searchQueryParam || 'q';
+
   return new Promise((resolve, reject) => {
-    axios(`${url}?q=${route}`).then((response) => {
+    axios(`${url}?${searchQueryParam}=${route}`).then((response) => {
       const data = response.data;
       let routes = [];
 

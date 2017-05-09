@@ -34,6 +34,8 @@ describe('http file', () => {
 
     mock.onGet('/empty?q=').reply(200, []);
 
+    mock.onGet('/empty?search=').reply(200, []);
+
     mock.onGet('/emptyWithRoutes?q=').reply(200, {
       "routes": []
     });
@@ -87,13 +89,13 @@ describe('http file', () => {
     });
 
     it('Should get empty routes', (done) => {
-      http.getRoutes('empty').then((r) => {
+      http.getRoutes({ url: 'empty' }).then((r) => {
         expect(r).to.be.empty;
 
-        http.getRoutes('emptyWithRoutes').then((r) => {
+        http.getRoutes({ url: 'emptyWithRoutes' }).then((r) => {
           expect(r).to.be.empty;
 
-          http.getRoutes('invalid').then((r) => {
+          http.getRoutes({ url: 'invalid' }).then((r) => {
             expect(r).to.be.empty;
             done();
           });
@@ -102,10 +104,10 @@ describe('http file', () => {
     });
 
     it('Should get three routes', (done) => {
-      http.getRoutes('threeRoutes').then((r) => {
+      http.getRoutes({ url: 'threeRoutes' }).then((r) => {
         expect(r.length).to.equal(3);
 
-        http.getRoutes('threeRoutesWithRoutes').then((r) => {
+        http.getRoutes({ url: 'threeRoutesWithRoutes' }).then((r) => {
           expect(r.length).to.equal(3);
           done();
         });
@@ -113,13 +115,19 @@ describe('http file', () => {
     });
 
     it('Should get one route filtered', (done) => {
-      http.getRoutes('oneRoute', 'contato').then((r) => {
+      http.getRoutes({ url: 'oneRoute' }, 'contato').then((r) => {
         expect(r.length).to.equal(1);
 
-        http.getRoutes('oneRouteWithRoutes', 'contato').then((r) => {
+        http.getRoutes({ url: 'oneRouteWithRoutes' }, 'contato').then((r) => {
           expect(r.length).to.equal(1);
           done();
         });
+      });
+    });
+
+    it('Should get empty routes with diferent searchQueryParam', () => {
+      http.getRoutes({ url: 'empty', searchQueryParam: 'search' }).then((r) => {
+        expect(r).to.be.empty;
       });
     });
   });

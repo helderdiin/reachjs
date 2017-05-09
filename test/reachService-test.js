@@ -21,6 +21,8 @@ import {
   getOpenKeys,
   getFirstOpenKey,
   getSecondOpenKey,
+  setRoutesConfig,
+  getRoutesConfig,
 } from '../src/components/reachService';
 
 import http from '../src/components/http';
@@ -211,6 +213,22 @@ describe('reachService file', () => {
     it('Should set onSelect with method', () => {
       setOnSelect(() => {});
       expect(getOnSelect()).to.be.a('function');
+    });
+  });
+
+  describe('setRoutesConfig', () => {
+    it('Should set routes url', () => {
+      setRoutesConfig({
+        url: 'url'
+      });
+      expect(getRoutesConfig().url).to.equal('url');
+    });
+
+    it('Should set routes searchQueryParam', () => {
+      setRoutesConfig({
+        searchQueryParam: 'search'
+      });
+      expect(getRoutesConfig().searchQueryParam).to.equal('search');
     });
   });
 });
