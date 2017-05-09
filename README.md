@@ -102,13 +102,17 @@ reachjs.init();
 Para configurações especiais na url de rotas você pode utilizar a chave `routesConfig` no objeto de inicialização. As alterações que podem ser feitas são:
 
 * Parâmetro de pesquisa da URL (searchQueryParam), que por padrão é `q`
+* Headers diferentes na requisição (customHeader)
 
 ``` javascript
 import reachjs from 'reachjs';
 
 reachjs.init({
   routesConfig: {
-    searchQueryParam: 'search'
+    searchQueryParam: 'search',
+    customHeader: {
+      Authorization: 'UmVhY2hKUw=='
+    }
   }
 });
 ```
@@ -119,7 +123,10 @@ Ou utilizar o método `setRoutesConfig` exposto pela biblioteca.
 import reachjs from 'reachjs';
 
 reachjs.setRoutesConfig({
-  searchQueryParam: 'search'
+  searchQueryParam: 'search',
+  customHeader: {
+    Authorization: 'UmVhY2hKUw=='
+  }
 });
 
 reachjs.init();
