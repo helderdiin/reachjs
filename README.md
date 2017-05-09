@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/helderdiin/reachjs.svg?branch=master)](https://travis-ci.org/helderdiin/reachjs)
 [![Coverage Status](https://coveralls.io/repos/github/helderdiin/reachjs/badge.svg?branch=master)](https://coveralls.io/github/helderdiin/reachjs?branch=master)
+[![GitHub issues](https://img.shields.io/github/issues/helderdiin/reachjs.svg)](https://github.com/helderdiin/reachjs/issues)
+[![NPM Version](https://img.shields.io/npm/v/reachjs.svg)](https://www.npmjs.com/package/reachjs)
+[![LICENSE](https://img.shields.io/npm/l/reachjs.svg)](https://github.com/helderdiin/reachjs/blob/master/LICENSE)
 [![Built With %E2%9D%A4](https://img.shields.io/badge/built%20with-%E2%9D%A4-red.svg)](https://github.com/helderdiin/reachjs)
 
 > Biblioteca JavaScript para pesquisa rápida de páginas em sua aplicação.
