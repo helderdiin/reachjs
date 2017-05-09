@@ -11,6 +11,8 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
     publicPath: '/',
+    libraryTarget: 'umd',
+    library: 'reachjs',
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src'),
