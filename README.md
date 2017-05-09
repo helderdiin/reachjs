@@ -223,6 +223,11 @@ reachjs.setOnSelect(data => {
 
 reachjs.init();
 ```
+## Teste de performance
+
+Para realizar o teste de performance da biblioteca filtrando os textos passados no campo de pesquisa utilizei `1395` items (routes) com title de `27` palavras e description de `362` palavras. Ao pesquisar com um texto de `5` palavras levou em média `650ms` para trazer o resultado e renderizar a tela, enquanto pesquisando com um texto de `2` palavra levou em média `300ms`.
+
+O método de filtro se encontra nesse [arquivo](https://github.com/helderdiin/reachjs/blob/master/src/components/reachService/index.js) e dentro do método `getRoutes`.
 
 ## Pendências
 
