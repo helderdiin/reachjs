@@ -7,7 +7,7 @@
 [![LICENSE](https://img.shields.io/npm/l/reachjs.svg)](https://github.com/helderdiin/reachjs/blob/master/LICENSE)
 [![Built With %E2%9D%A4](https://img.shields.io/badge/built%20with-%E2%9D%A4-red.svg)](https://github.com/helderdiin/reachjs)
 
-> Javascript library to quickly find pages in your web application
+> An Javascript library to quickly find pages in your web application
 
 [Leia em português](README.md)
 
@@ -193,7 +193,7 @@ reachjs.setOpenKeys([16, 18]);
 reachjs.init();
 ```
 
-**OBS.:** This configutation accepts only the keys `keyCode`. The `keyCodes` can be found through [this link](http://keycode.info/ "Link for keyCodes page").
+**OBS.:** This configutation accepts only the keys' `keyCode`. The `keyCodes` can be found through [this link](http://keycode.info/ "Link for keyCodes page").
 
 ### Item select event
 
