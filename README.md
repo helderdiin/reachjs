@@ -9,6 +9,8 @@
 
 > Biblioteca JavaScript para pesquisa rápida de páginas em sua aplicação.
 
+[Read this in english](README.en-us.md)
+
 Seus usuários poderão encontrar mais facilmente as páginas da sua aplicação utilizando apenas o teclado.
 
 ReachJS funciona basicamente como uma ferramenta de busca para o usuário (como o Pesquisar do Windows ou o Spotlight do macOS), utilizando os dados que são passados na inicialização da biblioteca.
