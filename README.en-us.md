@@ -13,7 +13,7 @@
 
 The users will be able to easily find the pages from your application using only the keyboard.
 
-ReachJS works basically as a search tool for the user (such as Windows' Search or MacOS' Spotlight), using the data that are passed at the library initialization.
+ReachJS works basically as a search tool for the user (such as Windows' Search or MacOS' Spotlight), using the data that is passed at the library initialization.
 
 See some examples:
 
